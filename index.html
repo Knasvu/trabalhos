@@ -1,50 +1,320 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Minha Página</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lorena — Portfólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09080a;
+  --s1:#100e12;
+  --s2:#161319;
+  --s3:#1d1a21;
+  --bd:#272330;
+  --bd2:#36313f;
+  --txt:#e0dce8;
+  --mut:#5a5565;
+  --soft:#9691a0;
+  --bx:#7b2d42;
+  --bx-h:#652436;
+  --bx-dim:#4a1a28;
+  --bx-glow:#170810;
+  --bx-txt:#c97088;
+  --bx-light:#e8a0b0;
+  --green-txt:#5a9e7a;
+  --display:'Playfair Display',serif;
+  --sans:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.4rem 3rem;
+  border-bottom:1px solid var(--bd);
+  background:rgba(9,8,10,.92);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  position:sticky;top:0;z-index:100;
+}
+.logo{font-family:var(--display);font-size:16px;font-weight:400;color:var(--bx-txt);letter-spacing:.06em;font-style:italic}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{
+  color:var(--mut);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  font-family:var(--sans);font-weight:500;
+  transition:color .28s ease;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;
+  background:var(--bx-txt);transition:width .32s cubic-bezier(.4,0,.2,1);
+}
+.nav-links a:hover{color:var(--txt)}
+.nav-links a:hover::after{width:100%}
+
+.hero{padding:6.5rem 3rem 5rem;max-width:740px;margin:0 auto}
+.eyebrow{
+  font-family:var(--mono);font-size:9.5px;color:var(--bx-dim);
+  letter-spacing:.2em;text-transform:uppercase;
+  display:flex;align-items:center;gap:.8rem;margin-bottom:1.8rem;
+  animation:fadeUp .7s ease both;
+}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--bx-dim)}
+
+h1{
+  font-family:var(--display);
+  font-size:clamp(2.8rem,6.5vw,4.6rem);
+  font-weight:400;line-height:1.08;
+  margin-bottom:.5rem;
+  animation:fadeUp .7s .1s ease both;
+  color:var(--txt);
+}
+.h1-name{display:block;font-size:clamp(3.4rem,8vw,5.5rem);font-weight:500;color:var(--bx-light);letter-spacing:-.01em}
+
+.hero-role{
+  font-family:var(--mono);font-size:11px;color:var(--bx-txt);
+  letter-spacing:.16em;text-transform:uppercase;margin-top:1.4rem;margin-bottom:.6rem;
+  opacity:.75;animation:fadeUp .7s .18s ease both;
+  display:flex;align-items:center;gap:.6rem;
+}
+.hero-role::before{content:'//';font-size:10px;opacity:.5}
+
+.hero-sub{
+  color:var(--soft);font-size:14px;max-width:500px;line-height:1.85;
+  margin-bottom:3rem;font-weight:300;
+  animation:fadeUp .7s .25s ease both;
+}
+.btns{display:flex;gap:.8rem;flex-wrap:wrap;animation:fadeUp .7s .32s ease both}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.72rem 1.75rem;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  font-family:var(--sans);font-weight:500;
+  border-radius:999px;cursor:pointer;
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1),background .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease;
+  position:relative;overflow:hidden;
+}
+.btn::before{
+  content:'';position:absolute;inset:0;border-radius:999px;
+  background:rgba(255,255,255,.06);opacity:0;transition:opacity .22s ease;
+}
+.btn:hover::before{opacity:1}
+.btn:hover{transform:translateY(-2px) scale(1.04)}
+.btn:active{transform:scale(.96)!important;transition-duration:.08s}
+
+.btn-bx{background:var(--bx);color:#f0e0e5;border:1px solid var(--bx);font-weight:500}
+.btn-bx:hover{background:var(--bx-h);border-color:var(--bx-h);box-shadow:0 8px 30px rgba(123,45,66,.35)}
+.btn-line{background:transparent;color:var(--soft);border:1px solid var(--bd2)}
+.btn-line:hover{color:var(--txt);border-color:var(--bx-dim)}
+
+hr.div{border:none;border-top:1px solid var(--bd);max-width:740px;margin:0 auto}
+section{padding:4.5rem 3rem;max-width:740px;margin:0 auto}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .58s ease,transform .58s ease}
+.fade-in.visible{opacity:1;transform:none}
+
+.lbl{
+  font-family:var(--mono);font-size:9px;color:var(--bx-dim);
+  letter-spacing:.18em;text-transform:uppercase;
+  display:flex;align-items:center;gap:.8rem;margin-bottom:2.2rem;
+}
+.lbl::after{content:'';flex:1;height:1px;background:var(--bd);max-width:56px}
+
+.about-p{color:var(--soft);font-size:15px;line-height:1.9;font-weight:300}
+.about-p em{color:var(--txt);font-style:normal;font-weight:400}
+
+.skills-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:520px){.skills-cols{grid-template-columns:1fr}}
+.skills-group-title{
+  font-family:var(--mono);font-size:9px;color:var(--mut);
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem;
+}
+.skill-list{display:flex;flex-direction:column;gap:.5rem}
+.skill-row{
+  display:flex;align-items:center;gap:.7rem;
+  font-size:13px;color:var(--soft);font-weight:300;
+  padding:.45rem 0;border-bottom:1px solid var(--bd);
+  transition:color .2s ease,padding-left .2s ease;cursor:default;
+}
+.skill-row:last-child{border-bottom:none}
+.skill-row:hover{color:var(--txt);padding-left:.4rem}
+.skill-dot{
+  width:4px;height:4px;border-radius:50%;
+  background:var(--bx-dim);flex-shrink:0;
+  transition:background .2s ease;
+}
+.skill-row:hover .skill-dot{background:var(--bx-txt)}
+
+.proj-list{border:1px solid var(--bd);border-radius:14px;overflow:hidden}
+.proj{
+  background:var(--s1);padding:1.4rem 1.8rem;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:1.2rem;
+  border-bottom:1px solid var(--bd);
+  transition:background .2s ease,padding-left .25s cubic-bezier(.4,0,.2,1);cursor:default;
+}
+.proj:last-child{border-bottom:none}
+.proj:hover{background:var(--s2);padding-left:2.3rem}
+.proj-name{
+  font-family:var(--display);font-size:1rem;
+  color:var(--txt);font-weight:400;margin-bottom:.25rem;
+  transition:color .2s;
+}
+.proj:hover .proj-name{color:var(--bx-txt)}
+.proj-desc{font-size:12px;color:var(--mut);line-height:1.65}
+.badge{
+  font-family:var(--mono);font-size:9px;
+  padding:.25rem .7rem;border-radius:999px;
+  white-space:nowrap;flex-shrink:0;margin-top:4px;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.badge-wip{background:var(--bx-glow);color:var(--bx-txt);border:1px solid var(--bx-dim)}
+.badge-ok{background:#071410;color:var(--green-txt);border:1px solid #1a4030}
+.badge-next{background:var(--s3);color:var(--mut);border:1px solid var(--bd)}
+
+.contact-box{
+  background:var(--s1);border:1px solid var(--bd);
+  border-radius:14px;padding:2.5rem;
+  transition:border-color .3s ease;
+}
+.contact-box:hover{border-color:var(--bx-dim)}
+.contact-intro{
+  color:var(--soft);font-size:14px;line-height:1.85;
+  margin-bottom:2rem;font-weight:300;
+}
+.contact-links{display:flex;gap:.7rem;flex-wrap:wrap}
+
+footer{
+  text-align:center;padding:2rem;
+  border-top:1px solid var(--bd);
+  font-family:var(--mono);font-size:9px;color:var(--bd2);
+  letter-spacing:.12em;text-transform:uppercase;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+</style>
 </head>
 <body>
-    <h1>Olá, mundo!</h1>
-    <p>Esta é minha primeira página publicada no GitHub Pages.</p>
-    <img src="https://cataas.com/cat" alt="Um Gatinho!">
 
-    <table border="1">
-  <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-  <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
-    </table>
+<nav>
+  <div class="logo">Portfólio</div>
+  <ul class="nav-links">
+    <li><a href="#sobre">sobre</a></li>
+    <li><a href="#habilidades">habilidades</a></li>
+    <li><a href="#projetos">projetos</a></li>
+    <li><a href="#contato">contato</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Disponível para Oportunidades</div>
+  <h1>
+    Olá! Eu sou a
+    <span class="h1-name">Lorena.</span>
+  </h1>
+  <div class="hero-role">Cybersecurity enthusiast · Em formação</div>
+  <p class="hero-sub">
+    Aprendendo programação do zero com foco em segurança da informação, focada a entender como os sistemas funcionam de verdade.
+  </p>
+  <div class="btns">
+    <a href="#projetos" class="btn btn-bx">Ver Projetos</a>
+    <a href="#contato" class="btn btn-line">Falar Comigo</a>
+  </div>
+</div>
+
+<hr class="div">
+
+<section id="sobre" class="fade-in">
+  <div class="lbl">Sobre Mim</div>
+  <p class="about-p">
+    Sou apaixonada por tecnologia e estou construindo minha carreira com foco em <em>Cibersegurança</em>. Minha trajetória começa pelo entendimento sólido dos fundamentos HTML, CSS, lógica e redes, porque sei que segurança de verdade começa pelo básico.<br><br>
+    Tenho inglês avançado para leitura técnica e aprendo rápido quando o assunto me interessa. E tecnologia sempre me interessa.
+  </p>
+</section>
+
+<hr class="div">
+
+<section id="habilidades" class="fade-in">
+  <div class="lbl">Habilidades</div>
+  <div class="skills-cols">
+    <div>
+      <div class="skills-group-title">Hard Skills</div>
+      <div class="skill-list">
+        <div class="skill-row"><span class="skill-dot"></span>Inglês avançado</div>
+        <div class="skill-row"><span class="skill-dot"></span>HTML5 e CSS3</div>
+        <div class="skill-row"><span class="skill-dot"></span>Ferramentas e sistemas digitais</div>
+        <div class="skill-row"><span class="skill-dot"></span>Instalação e config. de software</div>
+        <div class="skill-row"><span class="skill-dot"></span>Conhecimento em informática</div>
+        <div class="skill-row"><span class="skill-dot"></span>Aprendizado rápido de tecnologias</div>
+      </div>
+    </div>
+    <div>
+      <div class="skills-group-title">Soft Skills</div>
+      <div class="skill-list">
+        <div class="skill-row"><span class="skill-dot"></span>Pensamento analítico</div>
+        <div class="skill-row"><span class="skill-dot"></span>Resolução de problemas</div>
+        <div class="skill-row"><span class="skill-dot"></span>Atenção aos detalhes</div>
+        <div class="skill-row"><span class="skill-dot"></span>Aprendizado fácil</div>
+        <div class="skill-row"><span class="skill-dot"></span>Organização e adaptabilidade</div>
+        <div class="skill-row"><span class="skill-dot"></span>Boa comunicação</div>
+        <div class="skill-row"><span class="skill-dot"></span>Persistência e curiosidade</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section id="projetos" class="fade-in">
+  <div class="lbl">projetos</div>
+  <div class="proj-list">
+    <div class="proj">
+      <div>
+        <div class="proj-name">Portfólio pessoal</div>
+        <div class="proj-desc">Este site, construído com HTML e CSS, documentando minha evolução como dev. Irei atualizar conforme o tempo.</div>
+      </div>
+      <span class="badge badge-wip">em progresso</span>
+    </div>
+    <div class="proj">
+      <div>
+        <div class="proj-name">Exercícios de lógica</div>
+        <div class="proj-desc">Desafios de lógica de programação resolvidos durante os estudos iniciais.</div>
+      </div>
+      <span class="badge badge-ok">Em Breve</span>
+    </div>
+    <div class="proj">
+      <div>
+        <div class="proj-name">Estudos em Cyber Security</div>
+        <div class="proj-desc">Anotações, labs e materiais sobre fundamentos de segurança da informação.</div>
+      </div>
+      <span class="badge badge-next">Em Breve</span>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section id="contato" class="fade-in">
+  <div class="lbl">contato</div>
+  <div class="contact-box">
+    <p class="contact-intro">estou sempre aberta a fazer conexões, trocar conhecimentos, conversar sobre tecnologia e o aprendizado de quem está iniciando na área.</p>
+    <div class="contact-links">
+      <a href="https://github.com/Knasvu" class="btn btn-line">github</a>
+      <a href="" class="btn btn-line">linkedin (ainda nao pronto!)</a>
+    </div>
+  </div>
+</section>
+
+<footer>Feito com curiosidade e muita pesquisa no Google!</footer>
+
+<script>
+const els=document.querySelectorAll('.fade-in');
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+},{threshold:0.1});
+els.forEach(el=>io.observe(el));
+</script>
+
 </body>
 </html>
